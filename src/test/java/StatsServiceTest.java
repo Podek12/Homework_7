@@ -1,80 +1,69 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import ru.netology.stats.StatsService;
 
 public class StatsServiceTest {
 
     @Test
-    public void sumAllSales() {
+    void sumSales() {
         StatsService service = new StatsService();
-
+        int expected = 180;
         long sales[] = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expectedSales = 180;
-        long allSum = service.sumAllSales(sales);
 
-        Assertions.assertEquals(expectedSales, allSum);
-    }
+        int actual = service.sumSales(sales);
 
-
-    @Test
-    public void sumAverageSalesInMonth() {
-        StatsService service = new StatsService();
-
-        long sales[] = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expectedSumAverageSalesInMonth = 15;
-        long Average = service.sumAverageSalesInMonth(sales);
-
-        Assertions.assertEquals(expectedSumAverageSalesInMonth, Average);
-
-
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void sumMaxSalesMonth() {
+    void avergSales() {
         StatsService service = new StatsService();
-
+        double expected = 15;
         long sales[] = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expectedSumMaxSalesMonth = 8;
-        long SumMaxSalesMonth = service.sumMaxSalesMonth(sales);
+        double actual = service.avergSum(sales);
 
-        Assertions.assertEquals(expectedSumMaxSalesMonth, SumMaxSalesMonth);
-
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void sumMinSalesMonth() {
+    void minSales() {
         StatsService service = new StatsService();
+        int expected = 9;
         long sales[] = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expectedSumMinSalesMonth = 9;
-        long sumMinSalesMonth = service.sumMinSalesMonth(sales);
+        int actual = service.minSales(sales);
 
-        Assertions.assertEquals(expectedSumMinSalesMonth, sumMinSalesMonth);
-
-
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void minCalcMonthBelowAverage() {
+    void maxSales() {
         StatsService service = new StatsService();
+        int expected = 8;
         long sales[] = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expectedMinCalcMonthBelowAverage = 5;
-        long minCalcMonthBelowAverage = service.minCalcMonthBelowAverage(sales);
+        int actual = service.maxSales(sales);
 
-        Assertions.assertEquals(expectedMinCalcMonthBelowAverage, minCalcMonthBelowAverage);
-
-
+        assertEquals(expected, actual);
     }
 
     @Test
-    public void maxCalcMonthHigherAverage() {
+    void lessThanAvergSales() {
         StatsService service = new StatsService();
+        int expected = 7;
         long sales[] = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expectedMaxCalcMonthHigherAverage = 5;
-        long maxCalcMonthHigherAverage = service.maxCalcMonthHigherAverage(sales);
+        int actual = service.lessThanAvergSales(sales);
 
-        Assertions.assertEquals(expectedMaxCalcMonthHigherAverage, maxCalcMonthHigherAverage);
-
+        assertEquals(expected, actual);
     }
+
+    @Test
+    void aboveAvergSales() {
+        StatsService service = new StatsService();
+        int expected = 7;
+        long sales[] = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
+        int actual = service.aboveAvergSales(sales);
+
+        assertEquals(expected, actual);
+    }
+
 }

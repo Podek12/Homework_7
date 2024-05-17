@@ -2,66 +2,71 @@ package ru.netology.stats;
 
 public class StatsService {
 
-    public long sumAllSales(long[] sales) {
+    public int sumSales(long[] sales) {
+        int sumMonth = 0;
+        for (long sale : sales) {
+            sumMonth += sale;
 
-        long sum = 0;
-        for (int i = 0; i < sales.length; i++) {
-            sum = sum + sales[i];
         }
-        return sum;
+        return sumMonth;
     }
 
-    public long sumAverageSalesInMonth(long[] sales) {
-        long sum = 0;
-        for (int i = 0; i < sales.length; i++) {
-            sum = (sum + sales[i]);
-        }
-        return sum = sum / sales.length;
+    public double avergSum(long[] sales) {
+        double avergSum = 0;
+        double sumMonth = 0;
+
+        sumMonth = sumSales(sales);
+        avergSum = sumMonth / sales.length;
+
+        return avergSum;
     }
 
-    public int sumMaxSalesMonth(long[] sales) {
-        int maxMonth = 0;
-        for (int i = 0; i < sales.length; i++) {
-            if (sales[i] >= sales[maxMonth]) {
-                maxMonth = i;
-            }
-        }
-        return maxMonth + 1;
-    }
-
-
-    public int sumMinSalesMonth(long[] sales) {
+    public int minSales(long[] sales) {
         int minMonth = 0;
-        for (int i = 0; i < sales.length; i++) {
-            if (sales[i] <= sales[minMonth]) {
-                minMonth = i;
+        int index = 0;
+        for (long sale : sales) {
+            if (sale <= sales[minMonth]) {
+                minMonth = index;
             }
+            index = index + 1;
         }
         return minMonth + 1;
     }
 
-
-    public int minCalcMonthBelowAverage(long[] sales) {
-        int calcMinMonth = 0;
-        long sumAverageSalesInMonth = sumAverageSalesInMonth(sales);
-        for (int i = 0; i < sales.length; i++) {
-            if (sales[i] < sumAverageSalesInMonth) {
-                calcMinMonth = calcMinMonth + 1;
+    public int maxSales(long[] sales) {
+        int maxMonth = 0;
+        int index = 0;
+        for (long sale : sales) {
+            if (sale >= sales[maxMonth]) {
+                maxMonth = index;
             }
-
+            index = index + 1;
         }
-        return calcMinMonth;
+        return maxMonth + 1;
     }
 
-    public int maxCalcMonthHigherAverage(long[] sales) {
-        int calcMaxMonth = 0;
-        long sumAverageSalesInMonth = sumAverageSalesInMonth(sales);
-        for (int i = 0; i < sales.length; i++) {
-            if (sales[i] > sumAverageSalesInMonth(sales)) {
-                calcMaxMonth = calcMaxMonth + 1;
+    public int lessThanAvergSales(long[] sales) {
+        int lessAvergMonth = 0;
+        double avergSum = avergSum(sales);
+
+        for (long sale : sales) {
+            if (sale <= avergSum) {
+                lessAvergMonth++;
             }
         }
-        return calcMaxMonth;
+        return lessAvergMonth;
+    }
+
+    public int aboveAvergSales(long[] sales) {
+        int aboveAvergMonth = 0;
+        double avergSum = avergSum(sales);
+
+        for (long sale : sales) {
+            if (sale >= avergSum) {
+                aboveAvergMonth++;
+            }
+        }
+        return aboveAvergMonth;
     }
 
 }
